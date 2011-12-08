@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>brazen</artifactId>
+    <groupId>co.uk.immure.brazen</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>co.uk.immure.brazen</groupId>
+  <artifactId>brazen-services</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  	<dependency>
+  		<groupId>co.uk.immure.brazen</groupId>
+  		<artifactId>brazen-thelibrary</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  </dependencies>
+</project>
