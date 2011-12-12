@@ -7,6 +7,7 @@
   </parent>
   <groupId>co.uk.immure.brazen</groupId>
   <artifactId>brazen-services</artifactId>
+  <name>BRAZEN Common Services</name>
   <version>0.0.1-SNAPSHOT</version>
   <dependencies>
   	<dependency>

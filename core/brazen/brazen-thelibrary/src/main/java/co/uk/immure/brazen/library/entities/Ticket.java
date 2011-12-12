@@ -128,7 +128,7 @@ public class Ticket {
 		}
 		return false;
 	}
-	
+
 	public RelationshipType getRelationTo(Ticket ticket) {
 		for (Relationship r : relationships) {
 			if (r.getOtherNode().equals(ticket)) {
@@ -137,8 +137,9 @@ public class Ticket {
 		}
 		return null;
 	}
-	
-	public boolean addRelationship(RelationshipType relationshipType, Ticket otherNode) {
+
+	public boolean addRelationship(RelationshipType relationshipType,
+			Ticket otherNode) {
 		if (otherNode.equals(this)) {
 			throw new BrazenRuntimeException("Cannot relate a ticket to itself");
 		}
@@ -151,7 +152,12 @@ public class Ticket {
 			relationshipAdded = true;
 		}
 		return relationshipAdded;
-		
+
+	}
+
+	@Override
+	public String toString() {
+		return "Ticket [" + getType().getName() + ", " + getId() + "]";
 	}
 
 }
