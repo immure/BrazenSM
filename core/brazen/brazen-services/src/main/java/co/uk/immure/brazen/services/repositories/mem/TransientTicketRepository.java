@@ -5,6 +5,7 @@ import co.uk.immure.brazen.library.entities.Ticket;
 public class TransientTicketRepository extends AbstractTransientRepository<Ticket, String> {
 	
 	private static int lastId = 0;
+	private final static TransientTicketRepository instance = new TransientTicketRepository();
 
 	@Override
 	public String createUniqueId() {
@@ -14,6 +15,10 @@ public class TransientTicketRepository extends AbstractTransientRepository<Ticke
 	@Override
 	public String getId(Ticket object) {
 		return object.getId();
+	}
+
+	public static TransientTicketRepository getInstance() {
+		return instance;
 	}
 
 }

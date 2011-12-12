@@ -1,6 +1,8 @@
 package co.uk.immure.brazen.services.repositories.mem;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import co.uk.immure.brazen.services.repositories.Repository;
@@ -26,5 +28,10 @@ public abstract class AbstractTransientRepository<T, ID> implements Repository<T
 	public void unlock(ID id) {};
 	
 	public abstract ID getId(T object);
+	
+	@Override
+	public Collection<T> getAll() {
+		return repository.values();
+	}
 
 }

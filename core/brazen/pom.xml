@@ -10,6 +10,7 @@
 		<module>brazen-thelibrary</module>
 		<module>brazen-commons</module>
 		<module>brazen-services</module>
+		<module>brazen-web</module>
 	</modules>
 
 	<dependencies>
