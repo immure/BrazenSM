@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>brazen</artifactId>
+    <groupId>co.uk.immure.brazen</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>co.uk.immure.brazen</groupId>
+  <artifactId>brazen-camel</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>BRAZEN Camel Context</name>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.apache.activemq</groupId>
+  		<artifactId>activemq-core</artifactId>
+  		<version>5.4.3</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>co.uk.immure.brazen</groupId>
+  		<artifactId>brazen-spring</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>slf4j-log4j12</artifactId>
+  		<version>1.6.4</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  </dependencies>
+</project>

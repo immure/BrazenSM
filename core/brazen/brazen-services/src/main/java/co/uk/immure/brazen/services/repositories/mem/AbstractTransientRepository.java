@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.camel.Exchange;
+
 import co.uk.immure.brazen.services.repositories.Repository;
 
 
@@ -32,6 +34,12 @@ public abstract class AbstractTransientRepository<T, ID> implements Repository<T
 	@Override
 	public Collection<T> getAll() {
 		return repository.values();
+	}
+	
+	@Override
+	public void process(Exchange exchange) throws Exception {
+		
+		
 	}
 
 }
