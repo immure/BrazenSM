@@ -3,7 +3,10 @@ package co.uk.immure.brazen.services.repositories;
 import java.util.Collection;
 import java.util.List;
 
-public interface Repository<T,ID> {
+import org.apache.camel.Endpoint;
+import org.apache.camel.Processor;
+
+public interface Repository<T,ID> extends Processor {
 	
 	public T get(ID id);
 	public T save(T object);
