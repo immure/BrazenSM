@@ -1,9 +1,13 @@
-package co.uk.immure.brazen.services.startup;
+package uk.co.immure.brazen.services.startup;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import uk.co.immure.brazen.services.repositories.mem.TransientTicketRepository;
+import uk.co.immure.brazen.services.repositories.mem.TransientTicketTypeRepository;
 
 import co.uk.immure.brazen.library.definitions.TicketProperty;
 import co.uk.immure.brazen.library.definitions.TicketStage;
 import co.uk.immure.brazen.library.definitions.TicketType;
-import co.uk.immure.brazen.services.repositories.mem.TransientTicketTypeRepository;
 
 public class DemoInitialiser implements Initialiser {
 
@@ -17,6 +21,9 @@ public class DemoInitialiser implements Initialiser {
 	private static TicketProperty solutionProperty;
 
 	private static boolean initialised = false;
+	
+	@Autowired
+	protected TransientTicketTypeRepository transientTicketTypeRepository;
 
 	@Override
 	public boolean isInitialised() {
@@ -67,7 +74,7 @@ public class DemoInitialiser implements Initialiser {
 
 			resolved.addRequiredProperty(solutionProperty);
 
-			TransientTicketTypeRepository.getInstance().save(incidentType);
+			transientTicketTypeRepository.save(incidentType);
 			initialised = true;
 		}
 

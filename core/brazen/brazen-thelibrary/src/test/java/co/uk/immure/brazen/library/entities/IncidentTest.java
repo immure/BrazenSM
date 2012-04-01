@@ -70,7 +70,7 @@ public class IncidentTest {
 	
 	@Test
 	public void testIncidentWorkflow() throws TicketAdvancementException {
-		Ticket incident = Ticket.start(incidentType, 0, new User("test"));
+		Ticket incident = Ticket.start(incidentType, new User("test"));
 		assertEquals(incident.getCurrentStage(), registered);
 		
 		incident.advanceStage(accepted);
@@ -87,7 +87,7 @@ public class IncidentTest {
 	
 	@Test(expected=TicketAdvancementException.class)
 	public void testPropertyException() throws TicketAdvancementException {
-		Ticket incident = Ticket.start(incidentType, 0, new User("test"));
+		Ticket incident = Ticket.start(incidentType, new User("test"));
 		assertEquals(incident.getCurrentStage(), registered);
 		
 		incident.advanceStage(accepted);

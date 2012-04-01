@@ -3,6 +3,7 @@
  */
 package co.uk.immure.brazen.library.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -31,14 +32,14 @@ import lombok.extern.java.Log;
  */
 
 @Log
-public class Ticket {
+public class Ticket implements Serializable {
 
 	@Getter
 	private final TicketType type;
 	@Getter
 	private final long uniqueId;
 	@Getter
-	@Setter(AccessLevel.PROTECTED)
+	@Setter
 	private TicketStage currentStage;
 
 	@Getter
@@ -60,6 +61,12 @@ public class Ticket {
 		this.initiator = initiator;
 	}
 
+	public static Ticket start(TicketType type, User initiator) {
+		Ticket ticket = new Ticket(type, -1, initiator);
+		ticket.start();
+		return ticket;
+	}
+	
 	public static Ticket start(TicketType type, long id, User initiator) {
 		Ticket ticket = new Ticket(type, id, initiator);
 		ticket.start();
@@ -104,7 +111,7 @@ public class Ticket {
 	public Collection<TicketProperty> getMissingProperties(TicketStage stage) {
 		List<TicketProperty> missingProperties = new ArrayList<TicketProperty>(
 				stage.getRequiredProperties());
-		for (TicketProperty property : properties.keySet()) {
+		for (TicketProperty property : getProperties().keySet()) {
 			missingProperties.remove(property);
 		}
 		return Collections.unmodifiableCollection(missingProperties);
@@ -112,7 +119,7 @@ public class Ticket {
 
 	public void setProperty(TicketProperty property, String text) {
 		if (getType().getAvailableProperties().contains(property)) {
-			properties.put(property, text);
+			getProperties().put(property, text);
 		} else {
 			throw new LibraryStructureFailureException(
 					"Attempted to set non-existant property: " + getType()
@@ -121,7 +128,7 @@ public class Ticket {
 	}
 
 	public boolean isRelatedTo(Ticket ticket) {
-		for (Relationship r : relationships) {
+		for (Relationship r : getRelationships()) {
 			if (r.getOtherNode().equals(ticket)) {
 				return true;
 			}
@@ -130,7 +137,7 @@ public class Ticket {
 	}
 
 	public RelationshipType getRelationTo(Ticket ticket) {
-		for (Relationship r : relationships) {
+		for (Relationship r : getRelationships()) {
 			if (r.getOtherNode().equals(ticket)) {
 				return r.getType();
 			}
@@ -138,26 +145,38 @@ public class Ticket {
 		return null;
 	}
 
-	public boolean addRelationship(RelationshipType relationshipType,
-			Ticket otherNode) {
-		if (otherNode.equals(this)) {
-			throw new BrazenRuntimeException("Cannot relate a ticket to itself");
-		}
-		boolean relationshipAdded = false;
-		if (!isRelatedTo(otherNode)) {
-			relationships.add(new Relationship(relationshipType, otherNode));
-			if (!otherNode.isRelatedTo(this)) {
-				otherNode.addRelationship(relationshipType.getReverse(), this);
-			}
-			relationshipAdded = true;
-		}
-		return relationshipAdded;
-
+//	public boolean addRelationship(RelationshipType relationshipType,
+//			Ticket otherNode) {
+//		if (otherNode.equals(this)) {
+//			throw new BrazenRuntimeException("Cannot relate a ticket to itself");
+//		}
+//		boolean relationshipAdded = false;
+//		if (!isRelatedTo(otherNode)) {
+//			getRelationships().add(new Relationship(relationshipType, otherNode));
+//			if (!otherNode.isRelatedTo(this)) {
+//				otherNode.addRelationship(relationshipType.getReverse(), this);
+//			}
+//			relationshipAdded = true;
+//		}
+//		return relationshipAdded;
+//
+//	}
+	
+	public boolean isSkeleton() {
+		return uniqueId == -1;
 	}
 
 	@Override
 	public String toString() {
 		return "Ticket [" + getType().getName() + ", " + getId() + "]";
+	}
+
+	public List<Relationship> getRelationships() {
+		return relationships;
+	}
+
+	public Map<TicketProperty, String> getProperties() {
+		return Collections.unmodifiableMap(properties);
 	}
 
 }

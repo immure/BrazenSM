@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD:core/brazen/brazen-web/.project
 	<name>brazen-web</name>
 	<comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+=======
+	<name>brazen-cli</name>
+	<comment></comment>
+>>>>>>> 791429bf15e224780e44d5a8e5666248eee3da0f:core/brazen/brazen-cli/.project
 	<projects>
 	</projects>
 	<buildSpec>

@@ -1,0 +1,13 @@
+<<<<<<< HEAD:core/brazen/brazen-web/.settings/org.maven.ide.eclipse.prefs
+#Thu Sep 02 10:42:12 CEST 2010
+=======
+#Mon Mar 26 20:54:51 BST 2012
+>>>>>>> 791429bf15e224780e44d5a8e5666248eee3da0f:droozen/.settings/org.maven.ide.eclipse.prefs
+activeProfiles=
+eclipse.preferences.version=1
+fullBuildGoals=process-test-resources
+includeModules=false
+resolveWorkspaceProjects=true
+resourceFilterGoals=process-resources resources\:testResources
+skipCompilerPlugin=true
+version=1

@@ -1,4 +1,4 @@
-package co.uk.immure.brazen.services.startup;
+package uk.co.immure.brazen.services.startup;
 
 public interface Initialiser {
 	

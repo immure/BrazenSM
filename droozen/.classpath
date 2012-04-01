@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+<<<<<<< HEAD:core/brazen/brazen-web/.classpath
 	<classpathentry kind="src" output="target/brazen-web-0.0.1-SNAPSHOT/WEB-INF/classes" path="src/main/java"/>
 	<classpathentry kind="src" path="target/generated-sources/gwt"/>
 	<classpathentry excluding="**" kind="src" output="target/brazen-web-0.0.1-SNAPSHOT/WEB-INF/classes" path="src/main/resources"/>
@@ -8,4 +9,12 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
 	<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER"/>
 	<classpathentry kind="output" path="src/main/webapp/WEB-INF/classes"/>
+=======
+	<classpathentry kind="src" output="target/classes" path="src/main/java"/>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER"/>
+	<classpathentry kind="con" path="DROOLS/Drools"/>
+	<classpathentry kind="output" path="target/classes"/>
+>>>>>>> 791429bf15e224780e44d5a8e5666248eee3da0f:droozen/.classpath
 </classpath>

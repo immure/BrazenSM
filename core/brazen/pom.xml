@@ -14,6 +14,10 @@
 		<module>brazen-web</module>
 		<module>brazen-camel</module>
 		<module>brazen-spring</module>
+<<<<<<< HEAD
+=======
+		<module>brazen-cli</module>
+>>>>>>> 791429bf15e224780e44d5a8e5666248eee3da0f
 	</modules>
 
 	<properties>
@@ -212,6 +216,16 @@
 			<version>2.9.0</version>
 			<scope>compile</scope>
 		</dependency>
+<<<<<<< HEAD
+=======
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.4</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+>>>>>>> 791429bf15e224780e44d5a8e5666248eee3da0f
 	</dependencies>
 
 	<build>

@@ -1,4 +1,4 @@
-package co.uk.immure.brazen.services.repositories;
+package uk.co.immure.brazen.services.repositories;
 
 import java.util.Collection;
 import java.util.List;
