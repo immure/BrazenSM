@@ -1,14 +1,15 @@
 package co.uk.immure.brazen.services;
 
 import org.junit.Test;
+
+import uk.co.immure.brazen.services.repositories.Repository;
+import uk.co.immure.brazen.services.repositories.mem.TransientTicketRepository;
 import static org.junit.Assert.*;
 
 import co.uk.immure.brazen.library.definitions.TicketStage;
 import co.uk.immure.brazen.library.definitions.TicketType;
 import co.uk.immure.brazen.library.definitions.User;
 import co.uk.immure.brazen.library.entities.Ticket;
-import co.uk.immure.brazen.services.repositories.Repository;
-import co.uk.immure.brazen.services.repositories.mem.TransientTicketRepository;
 
 
 public class TransientTicketRepositoryTest {
@@ -30,7 +31,7 @@ public class TransientTicketRepositoryTest {
 		
 		TicketType tt = createTestTicketType();
 		long id = Long.parseLong(ticketRepository.createUniqueId());
-		Ticket t = Ticket.start(tt, id, new User("test"));
+		Ticket t = Ticket.start(tt, new User("test"));
 		String uniqueId = t.getId();
 		ticketRepository.save(t);
 		

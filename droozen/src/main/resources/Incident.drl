@@ -1,0 +1,83 @@
+#created on: Mar 26, 2012
+package uk.co.immure.droozen
+
+#list any import classes here.
+
+import uk.co.immure.droozen.exceptions.TicketNotValidException
+import java.util.List
+
+import function uk.co.immure.droozen.drools.functions.RuleFunctions.log;
+
+
+#declare any global variables here
+ 
+global uk.co.immure.droozen.mock.IdGenerator idGenerator
+
+rule "Creation"
+
+    when
+        i : Incident( stage == Incident.STAGES.NEW, id == null, subject : subject, title : title )
+    then
+    	if (subject == null) throw new TicketNotValidException("Subject cannot be null");
+    	if (title == null) throw new TicketNotValidException("Title cannot be null");
+    	log(drools, "[%s] Stage -> %s", i.getId(), i.getStage().toString());
+        i.setId(idGenerator.getId());
+        i.setType("Incident");
+         
+        i.setStage(Incident.STAGES.INITIALISED);
+        
+        i.setOnwardStages( new Stage[] { 
+        	Incident.STAGES.INITIALISED
+        });
+        update(i);
+
+end
+
+rule "Initialised"
+	when
+		i : Incident( onwardStages.contains(Incident.STAGES.INITIALISED), stage == Incident.STAGES.INITIALISED )
+	then
+		log(drools, "[%s] Stage -> %s", i.getId(), i.getStage().toString());
+		i.setOnwardStages( new Stage[] { 
+			Incident.STAGES.ASSIGNED,
+			Incident.STAGES.PENDING
+		});
+end
+
+rule "Assigning"
+    when
+        i : Incident( stage == Incident.STAGES.ASSIGNED, 
+        	onwardStages.contains(Incident.STAGES.ASSIGNED),
+        	assignee : assignee, id : id )
+    then
+    	log(drools, "[%s] Stage -> %s", i.getId(), i.getStage().toString());
+        i.setOnwardStages( new Stage[] { 
+			Incident.STAGES.RESOLVED,
+			Incident.STAGES.PENDING
+		});
+end
+
+rule "Resolved"
+    when
+        i : Incident( stage == Incident.STAGES.RESOLVED, 
+        	onwardStages.contains(Incident.STAGES.RESOLVED),
+        	assignee : assignee, id : id )
+    then
+        log(drools, "[%s] Stage -> %s", i.getId(), i.getStage().toString());
+        i.setOnwardStages( new Stage[] { 
+			Incident.STAGES.CLOSED,
+			Incident.STAGES.INITIALISED
+		});
+end
+
+rule "Closed"
+    when
+        i : Incident( stage == Incident.STAGES.CLOSED, 
+        	onwardStages.contains(Incident.STAGES.CLOSED),
+        	assignee : assignee, id : id )
+    then
+        log(drools, "[%s] Stage -> %s", i.getId(), i.getStage().toString());
+        i.setOnwardStages( new Stage[] {}); // Once closed incidents cannot be reopened
+end
+
+	
